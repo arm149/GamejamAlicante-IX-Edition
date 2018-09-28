@@ -70,7 +70,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 52
+  controlID: 131
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 51
+  controlID: 130
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_MinSize: {x: 887, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 50
+  controlID: 129
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -460,19 +460,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/3rd-Party
   m_ViewMode: 1
   m_StartGridSize: 66
   m_LastFolders:
-  - Assets
+  - Assets/3rd-Party
   m_LastFoldersGridSize: 66
-  m_LastProjectPath: C:\Users\Toni\Documents\GitHub\GamejamAlicante-IX-Edition
+  m_LastProjectPath: "C:\\Users\\Public\\Documents\\Unity Projects\\Gamejam Alicante
+    - IX Edici\xF3n"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 10.499998}
-    m_SelectedIDs: 52090000
-    m_LastClickedID: 2386
+    m_SelectedIDs: 140a0000
+    m_LastClickedID: 2580
     m_ExpandedIDs: 0000000052090000140a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
