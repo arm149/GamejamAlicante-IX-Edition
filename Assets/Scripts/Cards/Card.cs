@@ -23,6 +23,10 @@ public class Card : MonoBehaviour
   // Sprite assets name
   const string JUMP_ASSET = "jumpcard", MELEE_ATTACK_ASSET = "attackcard", SHOOT_ATTACK_ASSET = "HPFloopy", SHIELD_ASSET = "protectioncrad";
 
+  // Reference to the player
+  public GameObject player;
+  PlayerActions playerActions;
+
   public Card()
   {
     cardType = CardType.Null;
@@ -34,6 +38,9 @@ public class Card : MonoBehaviour
 
     // Assigns the key to activate this card
     AssignKeyPosition(position);
+
+    player = GameObject.FindGameObjectWithTag("Player");
+    playerActions = player.GetComponent<PlayerActions>();
   }
 
   void Update()
@@ -71,11 +78,11 @@ public class Card : MonoBehaviour
   {
     if(cardType == CardType.Jump)
     {
-      // player.jump
+      playerActions.jumpCardTriggered = true;
     }
     else if(cardType == CardType.MeleeAttack)
     {
-      // player.meleeAttack
+      // playerActions.attackCardTriggered = true;
     }
     else if(cardType == CardType.ShootAttack)
     {
@@ -83,7 +90,7 @@ public class Card : MonoBehaviour
     }
     else if(cardType == CardType.Shield)
     {
-      // player.shield
+      // playerActions.shieldCardTriggered = true;
     }
   }
 
