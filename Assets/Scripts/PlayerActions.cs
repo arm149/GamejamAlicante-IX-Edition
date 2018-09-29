@@ -8,6 +8,10 @@ public class PlayerActions : MonoBehaviour {
 
     //Is player jumping?
     bool jumping = false;
+    //Is player attacking?
+    bool attacking = false;
+    //Has the player damaged someone at the current attack?
+    bool damaged = false;
 
     //Check if we have landed
     bool checkLanding = true;
@@ -18,11 +22,23 @@ public class PlayerActions : MonoBehaviour {
     //CircleCollider2d component of the player
     private CircleCollider2D circlecollider;
 
+    //Collider for the attack
+    public BoxCollider2D AttackTrigger;
+
+    //CD between an attack starts and ends
+    public float AttackCD = 0.3f;
+
+    //Current time until the attack ends
+    float CurrentAttackTimer = 0.0f;
+
     //Health of the player
     private int CurrentHealth;
 
     //Maximum health of the player
     public int MaximumHealth = 3;
+
+    //Attack power of the character
+    public int AttackPower = 1;
 
     //Animator of the player
     public Animator animator;
@@ -32,15 +48,42 @@ public class PlayerActions : MonoBehaviour {
         rigidbody = GetComponent<Rigidbody2D>();
         circlecollider = GetComponent<CircleCollider2D>();
         CurrentHealth = MaximumHealth;
+        AttackTrigger.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        //Check if we jump (We can double/triple/etc jump)
 		if(Input.GetButtonDown("Jump"))
         {
             jumping = true;
             checkLanding = false;
             animator.SetBool("IsJumping", true);
+        }
+        //Check if we attack (and we currently are not attacking
+        if(Input.GetButtonDown("Attack") && !attacking)
+        {
+            attacking = true;
+            damaged = false;
+            CurrentAttackTimer = AttackCD;
+            AttackTrigger.enabled = true;
+
+            animator.SetBool("IsAttacking", true);
+        }
+
+        //Update in case we are attacking
+        if(attacking)
+        {
+            //Check the time until the attack ends
+            CurrentAttackTimer -= Time.deltaTime;
+            if(CurrentAttackTimer < 0.0f)
+            {
+                //Deactivate all the attack conditions
+                AttackTrigger.enabled = false;
+                attacking = false;
+                animator.SetBool("IsAttacking", false);
+                damaged = true;
+            }
         }
 	}
 
@@ -52,6 +95,32 @@ public class PlayerActions : MonoBehaviour {
         {
             checkLanding = true;
             animator.SetBool("IsJumping", false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            if(!damaged)
+            {
+                //Make damage to the target
+                damaged = true;
+                collision.gameObject.GetComponent<EnemyBehaviour>().ReceiveDamage(AttackPower);
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if (!damaged)
+            {
+                //Make damage to the target
+                damaged = true;
+                collision.gameObject.GetComponent<EnemyBehaviour>().ReceiveDamage(AttackPower);
+            }
         }
     }
 
@@ -73,7 +142,7 @@ public class PlayerActions : MonoBehaviour {
     }
 
     //Function to make damage to the player
-    void ReceiveDamage(int dmg)
+    public void ReceiveDamage(int dmg)
     {
         //Check if the damage received is positive
         if(dmg > 0)
@@ -84,6 +153,7 @@ public class PlayerActions : MonoBehaviour {
             if (CurrentHealth <= 0)
             {
                 //Activate death state
+                Destroy(gameObject);
             }
         }
     }
