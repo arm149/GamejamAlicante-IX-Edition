@@ -6,6 +6,9 @@ public class PlayerMovement : MonoBehaviour {
     //Speed of the player
     public float Speed = 40f;
 
+    //Animator component of the character
+    public Animator animator;
+
     //RigidBody component
     private Rigidbody2D rigidbody;
 
@@ -27,7 +30,9 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         horizontalMove = Input.GetAxis("Horizontal");
-	}
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+    }
 
     private void FixedUpdate()
     {

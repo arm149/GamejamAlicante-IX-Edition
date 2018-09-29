@@ -9,8 +9,14 @@ public class PlayerActions : MonoBehaviour {
     //Is player jumping?
     bool jumping = false;
 
+    //Check if we have landed
+    bool checkLanding = true;
+
     //RigidBody2D component of the player
     private Rigidbody2D rigidbody;
+
+    //CircleCollider2d component of the player
+    private CircleCollider2D circlecollider;
 
     //Health of the player
     private int CurrentHealth;
@@ -18,9 +24,13 @@ public class PlayerActions : MonoBehaviour {
     //Maximum health of the player
     public int MaximumHealth = 3;
 
+    //Animator of the player
+    public Animator animator;
+
 	// Use this for initialization
 	void Start () {
         rigidbody = GetComponent<Rigidbody2D>();
+        circlecollider = GetComponent<CircleCollider2D>();
         CurrentHealth = MaximumHealth;
 	}
 	
@@ -29,8 +39,21 @@ public class PlayerActions : MonoBehaviour {
 		if(Input.GetButtonDown("Jump"))
         {
             jumping = true;
+            checkLanding = false;
+            animator.SetBool("IsJumping", true);
         }
 	}
+
+    //Check if we have landed in the ground
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Check if we have jumped (otherwise, we are colliding because we are already on the ground
+        if(!checkLanding)
+        {
+            checkLanding = true;
+            animator.SetBool("IsJumping", false);
+        }
+    }
 
     private void FixedUpdate()
     {
