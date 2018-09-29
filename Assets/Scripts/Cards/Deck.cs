@@ -7,6 +7,16 @@ public class Deck : MonoBehaviour
   [SerializeField]
   List<CardType> deck;
 
+  public Deck()
+  {
+    this.deck = new List<CardType>();
+  }
+
+  public Deck(Deck d)
+  {
+    this.deck = new List<CardType>(d.deck);
+  }
+
   // Reorder list randomly
   public void Shuffle()
   {
@@ -57,5 +67,20 @@ public class Deck : MonoBehaviour
   public Deck getDeck()
   {
     return this;
+  }
+
+  public int getDeckCount()
+  {
+    return deck.Count;
+  }
+
+  public void setDeck(Deck d)
+  {
+    this.deck = new List<CardType>(d.deck);
+  }
+
+  public void Clear()
+  {
+    this.deck.Clear();
   }
 }
