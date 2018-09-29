@@ -8,13 +8,20 @@ public enum CardType { Jump, MeleeAttack, ShootAttack, Shield, Null };
 
 public class Card : MonoBehaviour
 {
-  public Transform canvas;
+  public Transform discardPile;
   public CardType cardType;
-  public Sprite sprite;
 
   // Position on the HUD
   [Range(1,4)]
   public int position;
+
+  // Key to activate this card
+  KeyCode keyCode;
+
+  // Sprite path
+  const string SPRITE_PATH = "Cards/";
+  // Sprite assets name
+  const string JUMP_ASSET = "jumpcard", MELEE_ATTACK_ASSET = "attackcard", SHOOT_ATTACK_ASSET = "HPFloopy", SHIELD_ASSET = "protectioncrad";
 
   public Card()
   {
@@ -24,23 +31,23 @@ public class Card : MonoBehaviour
   private void Start()
   {
     cardType = CardType.Null;
-    //GetComponent<Image>().sprite = sprite;
+
+    // Assigns the key to activate this card
+    AssignKeyPosition(position);
   }
 
   void Update()
   {
-    if (Input.GetKey(GetKeyPosition(position)))
+    if (Input.GetKeyDown(keyCode) && this.cardType != CardType.Null)
     {
-      UseCard(this.cardType);
+      UseCard();
       Discard();
     }
   }
 
   // Returns the key to activate this card based on its position
-  KeyCode GetKeyPosition(int position)
+  void AssignKeyPosition(int position)
   {
-    KeyCode keyCode = KeyCode.Z;
-
     if(position == 1)
     {
       keyCode = KeyCode.Alpha1;
@@ -57,11 +64,10 @@ public class Card : MonoBehaviour
     {
       keyCode = KeyCode.Alpha4;
     }
-    return keyCode;
   }
 
   // Use this card action
-  void UseCard(CardType cardType)
+  void UseCard()
   {
     if(cardType == CardType.Jump)
     {
@@ -71,13 +77,24 @@ public class Card : MonoBehaviour
     {
       // player.meleeAttack
     }
+    else if(cardType == CardType.ShootAttack)
+    {
+      // player.ShootAttack
+    }
+    else if(cardType == CardType.Shield)
+    {
+      // player.shield
+    }
   }
 
   void Discard()
   {
+    // Move card to discard pile
+    discardPile.GetComponent<DiscardPileManager>().addCard(this.cardType);
+    discardPile.GetComponent<DiscardPileManager>().UpdateUI();
+
     cardType = CardType.Null;
     GetComponent<Image>().sprite = null;
-    // discardPile.add(this.cardType);
   }
 
   // Returns if this slot is NOT containing a card
@@ -90,6 +107,28 @@ public class Card : MonoBehaviour
   public void Draw(CardType cardType)
   {
     this.cardType = cardType;
-    GetComponent<Image>().sprite = sprite;
+
+    AssignSprite();
+  }
+
+  // Assign sprite based on CardType
+  void AssignSprite()
+  {
+    if (cardType == CardType.Jump)
+    {
+      GetComponent<Image>().sprite = Resources.Load<Sprite>(SPRITE_PATH + JUMP_ASSET);
+    }
+    else if(cardType == CardType.MeleeAttack)
+    {
+      GetComponent<Image>().sprite = Resources.Load<Sprite>(SPRITE_PATH + MELEE_ATTACK_ASSET);
+    }
+    else if (cardType == CardType.ShootAttack)
+    {
+      GetComponent<Image>().sprite = Resources.Load<Sprite>(SPRITE_PATH + SHOOT_ATTACK_ASSET);
+    }
+    else if (cardType == CardType.Shield)
+    {
+      GetComponent<Image>().sprite = Resources.Load<Sprite>(SPRITE_PATH + SHIELD_ASSET);
+    }
   }
 }
