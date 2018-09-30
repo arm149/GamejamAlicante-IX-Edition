@@ -83,7 +83,6 @@ public class EnemyBehaviour : MonoBehaviour {
             Attack();
         }
 
-        Debug.Log("Velocidad: " + Mathf.Abs(rigidbody.velocity.x));
         animator.SetFloat("Speed", Mathf.Abs(rigidbody.velocity.x));
     }
 

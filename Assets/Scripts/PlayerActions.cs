@@ -11,6 +11,8 @@ public class PlayerActions : MonoBehaviour
   bool jumping = false;
   //Is player attacking?
   bool attacking = false;
+    //Is player covering?
+    bool covering = false;
   //Has the player damaged someone at the current attack?
   bool damaged = false;
 
@@ -44,6 +46,10 @@ public class PlayerActions : MonoBehaviour
   //Animator of the player
   public Animator animator;
 
+    public float shieldCD = 1f;
+
+    private float currentShieldCD = 0f;
+
   // HUD extension
   public bool jumpCardTriggered = false, attackCardTriggered = false, shieldCardTriggered = false;
   public MenuManager menuManager;
@@ -71,7 +77,7 @@ public class PlayerActions : MonoBehaviour
       animator.SetBool("IsJumping", true);
     }
     //Check if we attack (and we currently are not attacking
-    if (attackCardTriggered  && !attacking)
+    if (attackCardTriggered  && !attacking && !covering)
     {
       attackCardTriggered = false;
       attacking = true;
@@ -81,6 +87,24 @@ public class PlayerActions : MonoBehaviour
 
       animator.SetBool("IsAttacking", true);
     }
+    if(shieldCardTriggered && !attacking && !covering)
+    {
+            covering = true;
+            shieldCardTriggered = false;
+            currentShieldCD = shieldCD;
+
+            animator.SetBool("IsShielding", true);
+    }
+
+        if(covering)
+        {
+            currentShieldCD -= Time.deltaTime;
+            if(currentShieldCD < 0f)
+            {
+                covering = false;
+                animator.SetBool("IsShielding", false);
+            }
+        }
 
     //Update in case we are attacking
     if (attacking)
@@ -166,7 +190,7 @@ public class PlayerActions : MonoBehaviour
   public void ReceiveDamage(int dmg)
   {
     //Check if the damage received is positive
-    if (dmg > 0)
+    if (dmg > 0 && !covering)
     {
       //Make damage to the player
       CurrentHealth -= dmg;
