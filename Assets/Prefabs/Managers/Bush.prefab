@@ -53,9 +53,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bush: {fileID: 114389678684823898}
-  p: {fileID: 0}
-  v: {fileID: 0}
-  d: {fileID: 0}
 --- !u!114 &114389678684823898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,7 +67,10 @@ MonoBehaviour:
   mainMenu: MainMenu
   creditsMenu: CreditsMenu
   levels:
-  - Init
-  - Level1
-  numberOfLevels: 2
+  - Level 1
+  - Level 2
+  - Level 3
+  - Level 4
+  - Level 5
+  numberOfLevels: 5
   currentLevel: 0

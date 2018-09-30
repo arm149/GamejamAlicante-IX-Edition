@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
+    //Sound Effect
+    public AudioSource source;
+    public AudioClip run;
+
     //Speed of the player
     public float Speed = 40f;
 
@@ -25,10 +29,11 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
         rigidbody = GetComponent<Rigidbody2D>();
         t = GetComponent<Transform>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        source = GetComponent<AudioSource>();
+    }
+
+    // Update is called once per frame
+    void Update () {
         horizontalMove = Input.GetAxis("Horizontal");
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
@@ -44,6 +49,22 @@ public class PlayerMovement : MonoBehaviour {
     {
         //Add a force to the player to move it
         rigidbody.velocity = new Vector2(MoveSpeed * 5f, rigidbody.velocity.y);
+        if(rigidbody.velocity.x > 0.01 || rigidbody.velocity.x < -0.01)
+        {
+            if (source.isPlaying)
+            {
+                Debug.Log("Sonido de caminar todavia en curso");
+            }
+            else
+            {
+                source.PlayOneShot(run, 1F);
+            }
+            
+        }
+        if(rigidbody.velocity.x == 0)
+        {
+            source.Stop();
+        }
         //Check if the movement is in the opposite direction of the current player face, to flip him
         if((RightFacing && MoveSpeed < 0) || (!RightFacing && MoveSpeed > 0))
         {
@@ -61,4 +82,5 @@ public class PlayerMovement : MonoBehaviour {
         Scale.x = Scale.x * -1;
         t.localScale = Scale;
     }
+
 }
