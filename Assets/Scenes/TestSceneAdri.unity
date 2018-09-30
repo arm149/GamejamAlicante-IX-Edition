@@ -837,6 +837,7 @@ MonoBehaviour:
   AttackCD: 0.3
   CDBetweenAttacks: 0.5
   AttackTrigger: {fileID: 1329583299}
+  animator: {fileID: 1055353741}
 --- !u!212 &1055353739
 SpriteRenderer:
   m_ObjectHideFlags: 0
