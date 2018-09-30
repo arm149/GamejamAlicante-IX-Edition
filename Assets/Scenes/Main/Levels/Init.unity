@@ -1469,7 +1469,7 @@ Prefab:
     - target: {fileID: 224450728360926714, guid: 5dfce8faf96d4f74eb0aa119bf20e353,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dfce8faf96d4f74eb0aa119bf20e353, type: 2}
@@ -7561,7 +7561,7 @@ MonoBehaviour:
   m_YDamping: 1
   m_ZDamping: 0
   m_ScreenX: 0.5
-  m_ScreenY: 0.439
+  m_ScreenY: 0.54
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.285
   m_DeadZoneHeight: 0.137
@@ -7570,7 +7570,7 @@ MonoBehaviour:
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
-  m_BiasY: 0
+  m_BiasY: 0.00000008990143
   m_GroupFramingMode: 2
   m_AdjustmentMode: 2
   m_GroupFramingSize: 0.8
@@ -8460,7 +8460,7 @@ RectTransform:
   - {fileID: 1278382000}
   - {fileID: 894419491}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8980,7 +8980,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4227201978083000, guid: 8e7fdaa57bec77d4cbaf8ac82abce83e, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114681457572380676, guid: 8e7fdaa57bec77d4cbaf8ac82abce83e,
         type: 2}
@@ -10897,7 +10897,7 @@ Prefab:
     - target: {fileID: 224117145341707632, guid: 76b66ce8a9318c245a37128eb18dcc93,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114879338938247512, guid: 76b66ce8a9318c245a37128eb18dcc93,
         type: 2}
@@ -10960,12 +10960,12 @@ Prefab:
     - target: {fileID: 224239340019053978, guid: 76b66ce8a9318c245a37128eb18dcc93,
         type: 2}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 224239340019053978, guid: 76b66ce8a9318c245a37128eb18dcc93,
         type: 2}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76b66ce8a9318c245a37128eb18dcc93, type: 2}
@@ -11606,7 +11606,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1349174843}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2680001, y: -0.07599977, z: -10}
+  m_LocalPosition: {x: -3.2680001, y: 0.5300001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 961898588}
@@ -14419,11 +14419,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1776672079}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2680001, y: -0.07599977, z: -10}
+  m_LocalPosition: {x: -3.2680001, y: 0.5300001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1776672083
 MonoBehaviour:
