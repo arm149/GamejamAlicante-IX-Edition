@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/Levels/Init.unity
     guid: 86642bc7d070c4e48bfac9eb695cc75b
   - enabled: 1
-    path: Assets/Scenes/Main/Levels/Level 1.unity
+    path: Assets/Scenes/Main/Levels/Level 1 - Yolanda.unity
     guid: 0cfce1a17f803524ba01d9aaae9a6717
   - enabled: 1
     path: Assets/Scenes/Main/Levels/Level 2.unity
     guid: d66cc06e03cd5a7459e34d58a06541d6
+  - enabled: 1
+    path: Assets/Scenes/Main/Levels/Level 1.unity
+    guid: e5b5741f344588a449c815bcfcfa7dd6
   m_configObjects: {}
