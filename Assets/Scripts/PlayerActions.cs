@@ -71,8 +71,9 @@ public class PlayerActions : MonoBehaviour
       animator.SetBool("IsJumping", true);
     }
     //Check if we attack (and we currently are not attacking
-    if (Input.GetButtonDown("Attack") && !attacking)
+    if (attackCardTriggered  && !attacking)
     {
+      attackCardTriggered = false;
       attacking = true;
       damaged = false;
       CurrentAttackTimer = AttackCD;

@@ -57,19 +57,19 @@ public class Card : MonoBehaviour
   {
     if(position == 1)
     {
-      keyCode = KeyCode.Alpha1;
+      keyCode = KeyCode.JoystickButton2;
     }
     else if(position == 2)
     {
-      keyCode = KeyCode.Alpha2;
+      keyCode = KeyCode.JoystickButton3;
     }
     else if(position == 3)
     {
-      keyCode = KeyCode.Alpha3;
+      keyCode = KeyCode.JoystickButton0;
     }
     else if(position == 4)
     {
-      keyCode = KeyCode.Alpha4;
+      keyCode = KeyCode.JoystickButton1;
     }
   }
 
@@ -82,7 +82,7 @@ public class Card : MonoBehaviour
     }
     else if(cardType == CardType.MeleeAttack)
     {
-      // playerActions.attackCardTriggered = true;
+      playerActions.attackCardTriggered = true;
     }
     else if(cardType == CardType.ShootAttack)
     {

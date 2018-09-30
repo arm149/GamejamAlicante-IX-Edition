@@ -39,6 +39,9 @@ public class EnemyBehaviour : MonoBehaviour {
     //Area of the attack hitbox
     public BoxCollider2D AttackTrigger;
 
+    //Is the enemy facing right?
+    private bool FacingRight;
+
 	// Use this for initialization
 	void Start () {
         CurrentHealth = StartingHealth;
@@ -77,11 +80,20 @@ public class EnemyBehaviour : MonoBehaviour {
         {
             //Move to the right
             rigidbody.velocity = new Vector2(MoveSpeed * Time.fixedDeltaTime * 5f, rigidbody.velocity.y);
+            
+            if(!FacingRight)
+            {
+                Flip();
+            }
         }
         else
         {
             //Move to the left
             rigidbody.velocity = new Vector2(MoveSpeed * Time.fixedDeltaTime * 5f * -1f, rigidbody.velocity.y);
+            if(FacingRight)
+            {
+                Flip();
+            }
         }
     }
 
@@ -146,5 +158,14 @@ public class EnemyBehaviour : MonoBehaviour {
                 Destroy(gameObject);
             }
         }
+    }
+
+    public void Flip()
+    {
+        FacingRight = !FacingRight;
+
+        Vector3 Scale = gameObject.transform.localScale;
+        Scale.x = Scale.x * -1;
+        gameObject.transform.localScale = Scale;
     }
 }
