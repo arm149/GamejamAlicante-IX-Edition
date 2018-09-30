@@ -24,6 +24,12 @@ public class EnemyBehaviour : MonoBehaviour {
     //Time between attacks
     public float AttackCD = 0.3f;
 
+    //CD Between attacks, to avoid enemies too powerful
+    public float CDBetweenAttacks = 0.5f;
+
+    //Current CD between the attacks of the enemy
+    private float CurrentCDBetweenAttacks;
+
     //Time until the current attack finishes
     private float CurrentAttackCD = 0.0f;
 
@@ -40,7 +46,7 @@ public class EnemyBehaviour : MonoBehaviour {
     public BoxCollider2D AttackTrigger;
 
     //Is the enemy facing right?
-    private bool FacingRight;
+    private bool FacingRight = true;
 
 	// Use this for initialization
 	void Start () {
@@ -105,6 +111,7 @@ public class EnemyBehaviour : MonoBehaviour {
             attacking = true;
             AttackTrigger.enabled = true;
             CurrentAttackCD = AttackCD;
+            CurrentCDBetweenAttacks = CDBetweenAttacks;
             damaged = false;
         }
         else
@@ -112,15 +119,21 @@ public class EnemyBehaviour : MonoBehaviour {
             CurrentAttackCD -= Time.fixedDeltaTime;
             if(CurrentAttackCD <= 0.0f)
             {
-                attacking = false;
                 AttackTrigger.enabled = false;
-                damaged = true;
+                CurrentCDBetweenAttacks -= Time.fixedDeltaTime;
+                if(CurrentCDBetweenAttacks <= 0.0f)
+                {
+                    attacking = false;
+                    damaged = true;
+                }
             }
         }
     }
-
+    
+    //For the case of the player entering the trigger of an enemy
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Check, so we only damage the player
         if (collision.gameObject.tag == "Player")
         {
             if (!damaged)
@@ -132,8 +145,10 @@ public class EnemyBehaviour : MonoBehaviour {
         }
     }
 
+    //For the case of the player staying on the trigger of an enemy
     private void OnTriggerStay2D(Collider2D collision)
     {
+        //Check, so we only damage the player
         if (collision.gameObject.tag == "Player")
         {
             if (!damaged)
@@ -160,10 +175,12 @@ public class EnemyBehaviour : MonoBehaviour {
         }
     }
 
+    //Flip the enemy
     public void Flip()
     {
         FacingRight = !FacingRight;
 
+        //Invert it's scale on the x transform in order to flip it
         Vector3 Scale = gameObject.transform.localScale;
         Scale.x = Scale.x * -1;
         gameObject.transform.localScale = Scale;
