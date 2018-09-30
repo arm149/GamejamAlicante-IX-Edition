@@ -33,7 +33,7 @@ public class PlayerActions : MonoBehaviour
   float CurrentAttackTimer = 0.0f;
 
   //Health of the player
-  private int CurrentHealth;
+  public int CurrentHealth;
 
   //Maximum health of the player
   public int MaximumHealth = 3;
@@ -173,7 +173,7 @@ public class PlayerActions : MonoBehaviour
       //Check if the player has died
       if (CurrentHealth <= 0)
       {
-        //Activate death state
+        menuManager.DefeatMenu();
         Destroy(gameObject);
       }
     }
