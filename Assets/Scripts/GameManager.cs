@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+  public MenuManager menuManager;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        CheckVictory();
-	}
+  private void Start()
+  {
+    menuManager = GameObject.FindGameObjectWithTag("MenuManager").GetComponent<MenuManager>();
+  }
 
-    private void CheckVictory()
+  void Update()
+  {
+    CheckVictory();
+  }
+
+  private void CheckVictory()
+  {
+    GameObject[] g = GameObject.FindGameObjectsWithTag("Enemy");
+    Debug.Log("Entra: " + g.Length);
+    if (g.Length == 0)
     {
-        GameObject[] g = GameObject.FindGameObjectsWithTag("Enemy");
-        Debug.Log("Entra: " + g.Length);
-        if(g.Length == 0)
-        {
-            //We win
-            Debug.Log("Hemos ganado");
-        }
+      menuManager.VictoryMenu();
+      Debug.Log("Hemos ganado");
     }
+  }
 }
