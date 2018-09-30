@@ -90,7 +90,7 @@ public class Card : MonoBehaviour
     }
     else if(cardType == CardType.Shield)
     {
-      // playerActions.shieldCardTriggered = true;
+      playerActions.shieldCardTriggered = true;
     }
   }
 
