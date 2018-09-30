@@ -342,6 +342,32 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 7f2d7c1798ee2014bbfa86787bdf7c77,
         type: 3}
+    - target: {fileID: 224446558030373942, guid: ac8e6aaef7ce54f4485a4c6f06863274,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224446558030373942, guid: ac8e6aaef7ce54f4485a4c6f06863274,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224747000133152348, guid: ac8e6aaef7ce54f4485a4c6f06863274,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224747000133152348, guid: ac8e6aaef7ce54f4485a4c6f06863274,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114492458800743494, guid: ac8e6aaef7ce54f4485a4c6f06863274,
+        type: 2}
+      propertyPath: m_Text
+      value: "Programaci\xF3n:\n\nAdri\xE1n Franc\xE9s \nAntonio Rubio\n\n\n\n\n\nArte:\n\nYolanda
+        Cruz\nJos\xE9 Rico"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac8e6aaef7ce54f4485a4c6f06863274, type: 2}
   m_IsPrefabAsset: 0
