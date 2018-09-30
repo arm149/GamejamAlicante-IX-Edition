@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerActions : MonoBehaviour
 {
-  //Force of the jump
-  public float JumpForce = 10;
+    public AudioSource source;
+    public AudioClip jump;
+
+    //Force of the jump
+    public float JumpForce = 10;
 
   //Is player jumping?
   bool jumping = false;
@@ -75,6 +78,8 @@ public class PlayerActions : MonoBehaviour
       jumping = true;
       checkLanding = false;
       animator.SetBool("IsJumping", true);
+
+      source.PlayOneShot(jump, 1F);
     }
     //Check if we attack (and we currently are not attacking
     if (attackCardTriggered  && !attacking && !covering)
