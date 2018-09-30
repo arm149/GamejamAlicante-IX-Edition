@@ -14,9 +14,9 @@ public class MenuManager : MonoBehaviour
   //public Animator FadeAnimator;
 
   //Different canvas of the scene
-  public Canvas p;   //Pause canvas
-  public Canvas v;   //Victory canvas
-  public Canvas d;   //Defeat canvas
+  Canvas p;   //Pause canvas
+  Canvas v;   //Victory canvas
+  Canvas d;   //Defeat canvas
 
   // Use this for initialization
   void Start()
@@ -76,13 +76,14 @@ public class MenuManager : MonoBehaviour
     //Restore time
     Time.timeScale = 1.0f;
 
-    //Start the fade out transition to the next level
-    //FadeAnimator.SetTrigger("FadeOut");
+    UnityEngine.SceneManagement.SceneManager.LoadScene(bush.levels[bush.currentLevel]);
   }
 
-  public void OnFadeComplete()
+  public void RetryLevel()
   {
-    //Load the next level to the current one
+    //Restore time
+    Time.timeScale = 1.0f;
+
     UnityEngine.SceneManagement.SceneManager.LoadScene(bush.levels[bush.currentLevel]);
   }
 
@@ -123,6 +124,30 @@ public class MenuManager : MonoBehaviour
     //Load credits menu scene
     UnityEngine.SceneManagement.SceneManager.LoadScene(bush.creditsMenu);
     Time.timeScale = 1.0f;
+  }
+
+  public void VictoryMenu()
+  {
+    //Show canvas
+    if (v != null)
+    {
+      v.enabled = true;
+    }
+
+    //Stop time
+    Time.timeScale = 0.0f;
+  }
+
+  public void DefeatMenu()
+  {
+    //Show canvas
+    if (d != null)
+    {
+      d.enabled = true;
+    }
+
+    //Stop time
+    Time.timeScale = 0.0f;
   }
 
   public void PauseGame()
