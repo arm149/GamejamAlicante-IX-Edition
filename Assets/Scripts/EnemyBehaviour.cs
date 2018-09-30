@@ -51,6 +51,8 @@ public class EnemyBehaviour : MonoBehaviour {
     //Is the enemy facing right?
     private bool FacingRight = true;
 
+    public Animator animator;
+
 	// Use this for initialization
 	void Start () {
         CurrentHealth = StartingHealth;
@@ -80,6 +82,9 @@ public class EnemyBehaviour : MonoBehaviour {
             //Attack
             Attack();
         }
+
+        Debug.Log("Velocidad: " + Mathf.Abs(rigidbody.velocity.x));
+        animator.SetFloat("Speed", Mathf.Abs(rigidbody.velocity.x));
     }
 
     //Move Script
@@ -117,6 +122,7 @@ public class EnemyBehaviour : MonoBehaviour {
             CurrentAttackCD = AttackCD;
             CurrentCDBetweenAttacks = CDBetweenAttacks;
             damaged = false;
+            animator.SetBool("Attacking", true);
         }
         else
         {
@@ -124,6 +130,7 @@ public class EnemyBehaviour : MonoBehaviour {
             if(CurrentAttackCD <= 0.0f)
             {
                 AttackTrigger.enabled = false;
+                animator.SetBool("Attacking", false);
                 CurrentCDBetweenAttacks -= Time.fixedDeltaTime;
                 if(CurrentCDBetweenAttacks <= 0.0f)
                 {
@@ -173,6 +180,7 @@ public class EnemyBehaviour : MonoBehaviour {
             //Check if we have died
             if (CurrentHealth <= 0)
             {
+                animator.SetBool("Die", true);
                 //Destroy him!
                 Destroy(gameObject);
             }
