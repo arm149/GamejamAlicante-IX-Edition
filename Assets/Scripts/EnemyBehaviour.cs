@@ -18,6 +18,9 @@ public class EnemyBehaviour : MonoBehaviour {
     //Attack range of the enemy
     public float AttackRange = 1.0f;
 
+    //Maximum range for the enemy to start going after the player
+    public float MaxFollowRange = 10f;
+
     //Speed of the enemy
     public float MoveSpeed = 40f;
 
@@ -67,12 +70,12 @@ public class EnemyBehaviour : MonoBehaviour {
         //Evaluate the distance to the player
         float d = Vector3.Distance(player.transform.position, gameObject.transform.position);
         
-        if(d > AttackRange)
+        if(d > AttackRange && d < MaxFollowRange)
         {
             //Move
             Move();
         }
-        else
+        else if(d < AttackRange)
         {
             //Attack
             Attack();
@@ -86,7 +89,7 @@ public class EnemyBehaviour : MonoBehaviour {
         {
             //Move to the right
             rigidbody.velocity = new Vector2(MoveSpeed * Time.fixedDeltaTime * 5f, rigidbody.velocity.y);
-            
+            //Check if we need to flip the enemy
             if(!FacingRight)
             {
                 Flip();
@@ -96,6 +99,7 @@ public class EnemyBehaviour : MonoBehaviour {
         {
             //Move to the left
             rigidbody.velocity = new Vector2(MoveSpeed * Time.fixedDeltaTime * 5f * -1f, rigidbody.velocity.y);
+            //Check if we need to flip the enemy
             if(FacingRight)
             {
                 Flip();
